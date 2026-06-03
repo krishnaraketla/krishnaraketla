@@ -1,0 +1,22 @@
+{
+  "education": [
+    {
+      "id": "neu-ms",
+      "school": "Northeastern University",
+      "degree": "Master of Science in Computer Science",
+      "location": "Boston, MA",
+      "startDate": "2023-01",
+      "endDate": "2025-05",
+      "order": 1
+    },
+    {
+      "id": "vit-bs",
+      "school": "Vellore Institute of Technology",
+      "degree": "Bachelor of Science in Computer Science",
+      "location": "India",
+      "startDate": "2015-01",
+      "endDate": "2019-05",
+      "order": 2
+    }
+  ]
+}

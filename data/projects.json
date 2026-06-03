@@ -1,0 +1,239 @@
+{
+  "projects": [
+    {
+      "id": "counsel-legal-proofreading",
+      "title": "Counsel: Legal Document Proofreading",
+      "blurb": "Agentic legal proofreading with Google ADK: four parallel Gemini specialists with tools, streaming issues into an ONLYOFFICE DOCX editor.",
+      "description": [
+        "A single LLM pass over a long legal draft mixes spelling, grammar, citations, and formatting in one noisy list. I wanted an agentic setup where narrow specialists run in parallel, call document tools, and stream structured issues a lawyer can review before anything changes in Word.",
+        "Counsel orchestrates four Google ADK agents (spelling, grammar, fact/logic, formatting) on Gemini 2.0 Flash. Each agent has its own prompt, tool access (`python-docx` parsing, regex entity extraction, `eyecite` for citations), and SSE stream into a proofreading sidebar. The UI groups issues by agent category; clicking one highlights text in ONLYOFFICE, and “Apply Fix” sends replacements through a custom plugin and iframe bridge. Orgs, cases, and `.docx` uploads live in a FastAPI app with MongoDB GridFS; proofreading runs on a dedicated agent service (port 8001), separate from CRUD and editor callbacks.",
+        "Docker Compose ties together React + TypeScript + Tailwind, JWT-signed ONLYOFFICE config, and the two FastAPI services. The agent layer is the product path: parallel runs, tool-grounded findings, and human-in-the-loop edits instead of auto-patching the whole document.",
+        "This is an MVP: no real auth (seeded default user), summarizer and sidebar chat are UI placeholders, and quality depends on the agents and tools. I kept a simpler single-prompt `/api/proofread` route on the main backend for comparison; the live panel uses only the ADK agent service."
+      ],
+      "tags": ["Agentic AI", "Google ADK", "Python", "FastAPI", "React", "TypeScript", "Gemini", "Legal tech"],
+      "github": "https://github.com/krishnaraketla/paralegal",
+      "demo": null,
+      "featured": true,
+      "order": 3,
+      "thumbnail": {
+        "src": "data/paralegal/image.png",
+        "alt": "Counsel app: ONLYOFFICE editor with proofreading sidebar"
+      },
+      "images": [
+        {
+          "type": "video",
+          "src": "data/paralegal/counsel-proofread-demo.mov",
+          "alt": "Parallel ADK agents streaming proofreading issues; applying a fix in the editor",
+          "caption": "Agent streams grouped by category; highlight and apply a fix in ONLYOFFICE"
+        },
+        {
+          "src": "data/paralegal/image.png",
+          "alt": "Counsel app overview",
+          "caption": "ONLYOFFICE editor with proofreading sidebar"
+        }
+      ]
+    },
+    {
+      "id": "multi-label-genre-classifier",
+      "title": "Multi-Label Genre Classifier",
+      "blurb": "Scraped Smashwords book descriptions and genres, then explored a ~5.8k multi-label dataset ahead of a planned DistilBERT classifier.",
+      "description": [
+        "Books on Smashwords carry several genre tags at once, so a single-label model would miss most of the signal. I wanted a pipeline that collects real descriptions and labels from the site, then trains a transformer that can predict multiple genres from text.",
+        "The repo has a scraper and cleaned dataset under `data/` (descriptions paired with genre IDs and a genre map). In `notebooks/data_exploration.ipynb` I mapped IDs to human-readable labels, profiled missing values (~5.5k descriptions across ~5.8k rows), and counted label frequency across hundreds of genres, from broad buckets like Fiction and Nonfiction down to long-tail niches.",
+        "The EDA surfaced heavy class imbalance and multi-label overlap (many books share Adventure, Fiction, Romance, etc.), which will drive threshold tuning and evaluation choices before training. Next step is fine-tuning DistilBERT with multi-label sigmoid outputs; modeling code is not started yet.",
+        "This is an early-stage project: data collection and exploration are in place, but no trained model or inference API yet."
+      ],
+      "tags": ["NLP", "DistilBERT", "Python", "Multi-label Classification", "Web Scraping", "EDA", "PyTorch"],
+      "github": "https://github.com/krishnaraketla/multi-label-genre-classifier",
+      "demo": null,
+      "featured": true,
+      "order": 15,
+      "thumbnail": {
+        "src": "data/multi-label-genre-classifier/output.png",
+        "alt": "Word cloud of genre label frequencies from the Smashwords dataset"
+      },
+      "images": [
+        {
+          "src": "data/multi-label-genre-classifier/output.png",
+          "alt": "Word cloud showing relative frequency of book genres in the scraped dataset",
+          "caption": "Genre frequency word cloud from EDA (~5.8k labeled descriptions)"
+        }
+      ]
+    },
+    {
+      "id": "realtime-2d-object-recognition",
+      "title": "Real-Time 2D Object Recognition",
+      "blurb": "C++/OpenCV webcam app that segments objects and classifies them with shape features and k-NN or a decision tree.",
+      "description": [
+        "I wanted a lightweight way to recognize everyday objects on a desk in real time, without training a deep network. The challenge is reliable segmentation under changing lighting and clutter, then matching each blob to a class using only geometry.",
+        "I built a desktop pipeline in C++17 and OpenCV: blur and adaptive thresholding, morphological cleanup, connected-components labeling, and region tracking with tunable filters (size, boundary ignore, center priority). For each region I compute shape descriptors (area, compactness, aspect ratio, orientation, eccentricity, Hu moments, and an oriented bounding box) and visualize them in separate windows.",
+        "A webcam mode lets me add labeled training samples interactively, persist them to a CSV feature database under `dataset/`, and run live classification with bounding boxes, confidence, and an unknown-object threshold. I can switch between nearest-neighbor matching and a custom decision tree built from the same features. A second binary processes still images and saves preprocessed, region, and feature overlays.",
+        "I trained and tested on five tabletop classes (book, hat, perfume, scissors, shades). The project sharpened my understanding of classical recognition: feature design, normalization, and tradeoffs between simple classifiers, while keeping the system interactive enough to demo on a live camera feed."
+      ],
+      "tags": ["C++", "OpenCV", "Computer Vision", "Object Recognition", "Real-time", "Image Processing"],
+      "github": "https://github.com/krishnaraketla/realtime-2d-object-recognition",
+      "demo": null,
+      "thumbnail": {
+        "src": "data/realtime-2d-object-recognition/Proj03Examples/img2P3.png_features.png",
+        "alt": "Still-image run with oriented bounding box and shape axes on the largest region"
+      },
+      "images": [
+        {
+          "type": "video",
+          "src": "data/realtime-2d-object-recognition/CV-Project3.mov",
+          "alt": "Live webcam demo classifying book, hat, perfume, scissors, and shades",
+          "caption": "Live classification on a webcam feed"
+        },
+        {
+          "group": "img1p3",
+          "groupTitle": "Example 1",
+          "step": "input",
+          "src": "data/realtime-2d-object-recognition/Proj03Examples/img1p3.png",
+          "alt": "Example 1: original still image",
+          "caption": "Input"
+        },
+        {
+          "group": "img1p3",
+          "groupTitle": "Example 1",
+          "step": "preprocessed",
+          "src": "data/realtime-2d-object-recognition/Proj03Examples/img1p3.png_preprocessed.png",
+          "alt": "Example 1: blurred grayscale after preprocessing",
+          "caption": "Preprocessed"
+        },
+        {
+          "group": "img1p3",
+          "groupTitle": "Example 1",
+          "step": "threshold",
+          "src": "data/realtime-2d-object-recognition/Proj03Examples/img1p3.png_threshold.png",
+          "alt": "Example 1: adaptive threshold binary mask",
+          "caption": "Threshold"
+        },
+        {
+          "group": "img1p3",
+          "groupTitle": "Example 1",
+          "step": "regions",
+          "src": "data/realtime-2d-object-recognition/Proj03Examples/img1p3.png_regions.png",
+          "alt": "Example 1: connected components with region colors",
+          "caption": "Regions"
+        },
+        {
+          "group": "img1p3",
+          "groupTitle": "Example 1",
+          "step": "features",
+          "src": "data/realtime-2d-object-recognition/Proj03Examples/img1p3.png_features.png",
+          "alt": "Example 1: oriented bounding box and major/minor axes",
+          "caption": "Features"
+        },
+        {
+          "group": "img2P3",
+          "groupTitle": "Example 2",
+          "step": "input",
+          "src": "data/realtime-2d-object-recognition/Proj03Examples/img2P3.png",
+          "alt": "Example 2: original still image",
+          "caption": "Input"
+        },
+        {
+          "group": "img2P3",
+          "groupTitle": "Example 2",
+          "step": "preprocessed",
+          "src": "data/realtime-2d-object-recognition/Proj03Examples/img2P3.png_preprocessed.png",
+          "alt": "Example 2: blurred grayscale after preprocessing",
+          "caption": "Preprocessed"
+        },
+        {
+          "group": "img2P3",
+          "groupTitle": "Example 2",
+          "step": "threshold",
+          "src": "data/realtime-2d-object-recognition/Proj03Examples/img2P3.png_threshold.png",
+          "alt": "Example 2: adaptive threshold binary mask",
+          "caption": "Threshold"
+        },
+        {
+          "group": "img2P3",
+          "groupTitle": "Example 2",
+          "step": "regions",
+          "src": "data/realtime-2d-object-recognition/Proj03Examples/img2P3.png_regions.png",
+          "alt": "Example 2: connected components with region colors",
+          "caption": "Regions"
+        },
+        {
+          "group": "img2P3",
+          "groupTitle": "Example 2",
+          "step": "features",
+          "src": "data/realtime-2d-object-recognition/Proj03Examples/img2P3.png_features.png",
+          "alt": "Example 2: oriented bounding box and major/minor axes",
+          "caption": "Features"
+        },
+        {
+          "group": "img3P3",
+          "groupTitle": "Example 3",
+          "step": "input",
+          "src": "data/realtime-2d-object-recognition/Proj03Examples/img3P3.png",
+          "alt": "Example 3: original still image",
+          "caption": "Input"
+        },
+        {
+          "group": "img3P3",
+          "groupTitle": "Example 3",
+          "step": "preprocessed",
+          "src": "data/realtime-2d-object-recognition/Proj03Examples/img3P3.png_preprocessed.png",
+          "alt": "Example 3: blurred grayscale after preprocessing",
+          "caption": "Preprocessed"
+        },
+        {
+          "group": "img3P3",
+          "groupTitle": "Example 3",
+          "step": "threshold",
+          "src": "data/realtime-2d-object-recognition/Proj03Examples/img3P3.png_threshold.png",
+          "alt": "Example 3: adaptive threshold binary mask",
+          "caption": "Threshold"
+        },
+        {
+          "group": "img3P3",
+          "groupTitle": "Example 3",
+          "step": "regions",
+          "src": "data/realtime-2d-object-recognition/Proj03Examples/img3P3.png_regions.png",
+          "alt": "Example 3: connected components with region colors",
+          "caption": "Regions"
+        },
+        {
+          "group": "img3P3",
+          "groupTitle": "Example 3",
+          "step": "features",
+          "src": "data/realtime-2d-object-recognition/Proj03Examples/img3P3.png_features.png",
+          "alt": "Example 3: oriented bounding box and major/minor axes",
+          "caption": "Features"
+        }
+      ],
+      "featured": true,
+      "order": 10
+    },
+    {
+      "id": "image-processing-application",
+      "title": "Image Processing Application",
+      "blurb": "Java MVC app with GUI, console, batch script, and async HTTP job server with strategy-based filters/transforms over PPM/BMP/JPG/PNG.",
+      "description": [
+        "For an object-oriented software design course, I needed a system where views, command parsing, and image algorithms stay decoupled, while still supporting interactive editing, scripted batches, and remote job submission.",
+        "`Main` routes to four modes: Swing GUI (`GUIView` + `GUIController`), console REPL (`ConsoleView` → `AbstractView` → `ControllerImpl`), batch file (`-file`), and an optional HTTP server. All paths share `AbstractController` command parsing (load, save, flip, split/combine, brighten/darken, dither, etc.). The GUI uses `SwingWorker` for background work, writes rolling `temp_*.png` previews, and injects `GUIController` for histogram export; console and batch use `ControllerImpl` against `ModelImpl` directly.",
+        "The model layers `Model` → `ImprovedModel` (filters, transforms, dither) → `EnhancedModel` (histogram). `AbstractModel` keeps a capped `imagesByName` session map (50 images, LRU eviction) and delegates IO to format-specific `BMPImage`, `JPGImage`, `PNGImage`, and `PPMImage` types behind `ImageFactory`. Blur and sharpen use convolution via `ImageFilter` (`BlurFilter`, `SharpenFilter`); greyscale and sepia use matrix transforms via `ImageTransform`, with parallel row/column processing in `AbstractImageTransform`.",
+        "I also added an async `ImageProcessingHttpServer` (`GET /health`, `POST /jobs`, `GET /jobs/{id}`) backed by `JobQueueImageProcessingService`, an `ExecutorService` and `LinkedBlockingQueue` where each job spins up its own `ControllerImpl`. Runtime artifacts include `histogram.csv` and a planned `ChartData` hook for GUI charts (not fully wired). JUnit tests mock the model to verify the controller command layer."
+      ],
+      "tags": ["Java", "Swing", "MVC", "Strategy Pattern", "Image Processing", "HTTP", "JUnit"],
+      "github": "https://github.com/krishnaraketla/Image-Processing-Application",
+      "demo": null,
+      "featured": true,
+      "order": 40,
+      "thumbnail": {
+        "src": "data/image-processing-application/image.png",
+        "alt": "Low-level design diagram: entry points, MVC controller and model layers, filter/transform strategies, image IO, and HTTP job queue"
+      },
+      "images": [
+        {
+          "src": "data/image-processing-application/image.png",
+          "alt": "Low-level design architecture for the Image Processing Application: views, controllers, model hierarchy, strategy filters, format handlers, and async HTTP jobs",
+          "caption": "Low-level design: GUI / console / batch / HTTP entry points through shared command parsing to ModelImpl, strategy filters, and format-specific image IO"
+        }
+      ]
+    }
+  ]
+}

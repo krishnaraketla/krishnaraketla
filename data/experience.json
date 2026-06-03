@@ -1,0 +1,110 @@
+{
+  "experience": [
+    {
+      "id": "woc",
+      "company": "Women of Connections Ministry",
+      "role": "Software Engineer",
+      "location": null,
+      "startDate": "2025-09",
+      "endDate": "Present",
+      "blurb": "Helping a community organization make sense of data spread across dozens of counties, so search actually finds what people need.",
+      "stories": [
+        {
+          "title": "Beyond keyword search",
+          "paragraphs": [
+            "The ministry serves people across 31 counties, and the datasets behind that work are messy in the way real-world data always is. I joined to help build pipelines that ingest and normalize that information so staff aren't fighting spreadsheets.",
+            "Keyword search wasn't enough once we saw how people actually looked for help. I leaned into embedding-based retrieval and vector indexing so semantic search could catch intent, not just exact phrases. It's the same instinct I bring to production ML systems: meet users where they are, not where the schema is cleanest."
+          ]
+        }
+      ],
+      "tags": ["Python", "Vector Search", "Data Pipelines"],
+      "url": null,
+      "order": 1
+    },
+    {
+      "id": "lg-vertetch-coop",
+      "company": "LG Energy Solution Vertech",
+      "role": "ML Software Engineer (Co-op)",
+      "location": "Westborough, MA",
+      "startDate": "2024-09",
+      "endDate": "2024-12",
+      "blurb": "Two problems at once: millions of energy-market data points a day, and teammates losing whole afternoons to a pandas groupby.",
+      "stories": [
+        {
+          "title": "The pipeline had to come first",
+          "paragraphs": [
+            "I joined the data analytics team to support energy price forecasting. Prices move with ISO rules, fuel mix, weather, and who's bidding in the market. LG's battery customers care because storing and selling at the right time is the business.",
+            "None of that modeling matters without reliable data. We were ingesting well over a million points a day, and I owned getting that path right: S3, Lambdas, IAM, Snowpipe into Snowflake, orchestration through GitHub Actions. I worked closely with our lead data scientist on transforms and preprocessing, and we turned that into a checklist that cut rework in half.",
+            "On a three-week co-op window, the architecture had to get the forecasting team unblocked fast without becoming something only I could operate. Snowflake with Snowpipe fit the workload: managed scale for analytics, native ingestion from S3, and SQL the team already used daily. Standing up self-hosted Postgres would have eaten the timeline on ops and glue code instead of schema contracts and data quality. When sources sent empty rows or renamed columns overnight, CloudWatch alarms and a dynamic schema mapper in Lambda quarantined bad data instead of poisoning downstream jobs. The model team started training a week early, which was the whole point."
+          ]
+        }
+      ],
+      "tags": ["AWS", "Snowflake", "Python", "Data Engineering"],
+      "url": null,
+      "order": 3
+    },
+    {
+      "id": "hp-se2",
+      "company": "Hewlett-Packard",
+      "role": "Software Engineer II, Fax",
+      "location": "Bangalore, India",
+      "startDate": "2021-08",
+      "endDate": "2022-11",
+      "blurb": "Circular fax UIs customers hated, modems that couldn't build, and diagnostics that had to tell the truth about hardware, not just green checkmarks.",
+      "stories": [
+        {
+          "title": "When nostalgia was the wrong bet",
+          "paragraphs": [
+            "We shipped early fax printers with a circular dial UI, meant to feel nostalgic. Beta customers were blunt: it was confusing next to the rectangular layouts they already knew. As tech lead for the fax UI slice, I dug through our codebase and realized maybe 60% of components could survive a layout-first redesign if we were deliberate.",
+            "I brought that map to partner teams; we reused what we could and still hit the original product timeline. Satisfaction scores recovered once the UI matched how people actually navigate settings."
+          ]
+        },
+        {
+          "title": "Unblocking Synaptics without the license wait",
+          "paragraphs": [
+            "Synaptics builds our fax modems. Mid-delivery, their HP build licenses lapsed: weeks of process if we waited. They didn't need our full tree; they needed compiled libraries to test against our machines.",
+            "I stood up an on-prem build server with bash automation: upload sources, wait for a build, download artifacts. It wasn't glamorous, but it kept a critical vendor moving while legal caught up."
+          ]
+        },
+        {
+          "title": "Diagnostics that admit uncertainty",
+          "paragraphs": [
+            "I was asked for a module to answer: is this machine ready to send and receive faxes? That felt too thin: \"ready\" but failing in the field helps nobody. With our lead architect, we expanded scope: boot, send, receive, forward, something that could grow.",
+            "I designed interfaces for hardware, REST APIs between embedded and UI, and CDM schemas so modem data had one shape. Under stress we handled hundreds of concurrent diagnostic sessions; the module shipped on three printer models and surfaced faults we would have missed with a lighter checklist."
+          ]
+        },
+        {
+          "title": "The pages that vanished quietly",
+          "paragraphs": [
+            "While building diagnostics I chased a ghost bug: pages disappeared during transmission even though the T30 protocol logs looked clean. Standard logging stopped at phase boundaries; the failure lived between them.",
+            "I reverse-engineered our T30 path and built a custom logger that instrumented buffering, error correction, and page assembly: handshakes the default tools never showed. The root cause was a buffer overflow during assembly. Other engineers adopted the logger; it became the kind of tool you reach for when the protocol says success but the customer says otherwise."
+          ]
+        }
+      ],
+      "tags": ["REST APIs", "Distributed Systems", "Embedded"],
+      "url": "https://www.hp.com",
+      "order": 4
+    },
+    {
+      "id": "hp-se1",
+      "company": "Hewlett-Packard",
+      "role": "Software Engineer, Fax",
+      "location": "Bangalore, India",
+      "startDate": "2019-01",
+      "endDate": "2021-08",
+      "blurb": "Learning how fax software ships: tests that catch real failures, and releases that don't need weeks of manual prayer.",
+      "stories": [
+        {
+          "title": "Making releases boring (in a good way)",
+          "paragraphs": [
+            "Before the diagnostics and UI work, I was on the team keeping distributed fax services honest: automated evaluation pipelines, regression suites, validation before anything reached the field.",
+            "The goal was boring releases: fewer integration surprises, faster feedback when something broke in a performance-sensitive path. We pushed release cadence from weeks toward days by automating the parts humans shouldn't have to repeat every cycle."
+          ]
+        }
+      ],
+      "tags": ["Testing", "CI/CD"],
+      "url": "https://www.hp.com",
+      "order": 5
+    }
+  ]
+}

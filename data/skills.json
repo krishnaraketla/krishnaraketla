@@ -1,0 +1,20 @@
+{
+  "categories": [
+    {
+      "name": "Languages",
+      "skills": ["Python", "Java", "SQL", "C++"]
+    },
+    {
+      "name": "AI / ML Systems",
+      "skills": ["LLM Applications", "RAG Pipelines", "Vector Search", "PyTorch", "ML Inference"]
+    },
+    {
+      "name": "Backend & Distributed Systems",
+      "skills": ["FastAPI", "Kafka", "PostgreSQL", "Redis", "MongoDB", "REST APIs"]
+    },
+    {
+      "name": "Cloud & Infrastructure",
+      "skills": ["AWS", "Docker", "Kubernetes", "Terraform", "CI/CD"]
+    }
+  ]
+}

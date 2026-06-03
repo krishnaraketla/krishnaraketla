@@ -1,6 +1,6 @@
 # Personal portfolio (GitHub Pages)
 
-A single-page static portfolio: introduction, projects, and learning. No build step — edit HTML and CSS, push to GitHub.
+A single-page static portfolio: introduction, projects, and learning. No build step : edit HTML and CSS, push to GitHub.
 
 ## Local preview
 
@@ -14,12 +14,95 @@ Then visit http://localhost:8000
 
 ## Customize content
 
+### About
+
 Edit [`index.html`](index.html):
 
-- Replace **Your Name**, bio, and social links (`YOUR_USERNAME`, email, LinkedIn, resume URL)
-- Update project cards (titles, descriptions, tags, GitHub/demo links)
-- Update learning sections under Currently / Recently finished / Want to explore
-- Optional: add `assets/profile.jpg` and uncomment the profile image in the About section
+- Professional summary and contact line
+- GitHub and LinkedIn URLs (replace `YOUR_USERNAME` / `YOUR_PROFILE`)
+- Optional: add `assets/profile.jpg` and uncomment the profile image
+
+### Education & skills
+
+- [`data/education.json`](data/education.json) : degrees and dates
+- [`data/skills.json`](data/skills.json) : skill categories and tags
+
+### Work experience (data file)
+
+Add roles in [`data/experience.json`](data/experience.json). Entries render as a timeline (most recent first).
+
+**Example entry:**
+
+```json
+{
+  "id": "acme-intern-2024",
+  "company": "Acme Corp",
+  "role": "Software Engineering Intern",
+  "location": "Boston, MA",
+  "startDate": "2024-06",
+  "endDate": "2024-08",
+  "highlights": [
+    "Built X that improved Y by Z%.",
+    "Worked with Python and AWS on …"
+  ],
+  "tags": ["Python", "AWS"],
+  "url": "https://acme.example.com",
+  "order": 1
+}
+```
+
+Use `"endDate": "Present"` for current roles. Dates use `YYYY-MM` format.
+
+Each role should feel human, not like a resume:
+
+- `blurb` : one conversational hook on the card
+- `stories` : array of `{ "title": "...", "paragraphs": ["...", "..."] }` for the detail modal
+- Avoid bullet dumps on the card; save narrative for `stories`
+
+### Projects (data file)
+
+Add and edit projects in [`data/projects.json`](data/projects.json). The page loads this file and renders cards, tag filters, and a detail modal automatically.
+
+Put screenshots in [`assets/projects/`](assets/projects/) (e.g. `assets/projects/my-app.png`).
+
+**Example entry:**
+
+```json
+{
+  "id": "my-app",
+  "title": "My App",
+  "blurb": "Short one-liner shown on the card.",
+  "description": [
+    "First paragraph of the full write-up.",
+    "Second paragraph : problem, stack, outcome, etc."
+  ],
+  "tags": ["Python", "Flask"],
+  "github": "https://github.com/YOUR_USERNAME/my-app",
+  "demo": "https://my-app.example.com",
+  "images": [
+    {
+      "src": "assets/projects/my-app.png",
+      "alt": "Screenshot of My App dashboard"
+    }
+  ],
+  "featured": true,
+  "order": 1
+}
+```
+
+| Field | Required | Purpose |
+|-------|----------|---------|
+| `id` | yes | Unique slug; used for “View details” |
+| `title` | yes | Project name |
+| `blurb` | yes | Short summary on the card |
+| `description` | yes | Array of paragraphs in the detail modal |
+| `tags` | yes | Used for filter buttons (e.g. `Python`, `Web`) |
+| `github` | no | Repo URL; omit if none |
+| `demo` | no | Live URL; use `null` if none |
+| `images` | no | Screenshots; first image is the card thumbnail |
+| `order` | no | Sort order (lower = first) |
+
+After editing JSON, refresh the page (use a local server so `fetch` works : see above).
 
 Colors and layout live in [`css/style.css`](css/style.css).
 
@@ -71,7 +154,7 @@ git commit -m "Update portfolio content"
 git push
 ```
 
-Changes usually appear within 1–3 minutes.
+Changes usually appear within 1-3 minutes.
 
 ## Optional later
 

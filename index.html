@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Personal portfolio — projects, learning, and introduction.">
-  <meta name="author" content="Your Name">
-  <title>Your Name — Portfolio</title>
+  <meta name="description" content="Krishna Raketla | AI engineer portfolio: experience, projects, and skills.">
+  <meta name="author" content="Krishna Raketla">
+  <title>Krishna Raketla | Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -16,11 +16,13 @@
 
   <header class="site-header">
     <nav class="site-nav" aria-label="Main">
-      <a class="site-logo" href="#about">Your Name</a>
+      <a class="site-logo" href="#about">Krishna Raketla</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
-        <li><a href="#learning">Learning</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
       </ul>
     </nav>
   </header>
@@ -31,16 +33,16 @@
       <div class="about-inner">
         <div class="about-text">
           <p class="eyebrow">Hello, I'm</p>
-          <h1>Your Name</h1>
+          <h1>Krishna Raketla</h1>
+          <p class="contact-line">Boston, MA <span class="contact-sep">·</span> open to relocation</p>
           <p class="lead">
-            Short bio goes here — what you do, what you're interested in, and what you're looking for.
-            Two or three sentences is enough for a clean intro.
+            I like fixing the quiet failures, the ones where the logs look fine but something's still off. For me that's usually pipelines and observability first, then the ML or agents on top. I care that the system tells the truth when real data and real people show up.
           </p>
           <div class="link-row">
-            <a class="btn btn-primary" href="https://github.com/YOUR_USERNAME" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a class="btn" href="https://linkedin.com/in/YOUR_PROFILE" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a class="btn" href="mailto:you@example.com">Email</a>
-            <a class="btn" href="#" target="_blank" rel="noopener noreferrer">Resume</a>
+            <a class="btn" href="https://github.com/krishnaraketla" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/in/krishna-raketla/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a class="btn" href="mailto:raketla.k@northeastern.edu">Email</a>
+            <a class="btn" href="tel:+16178200415">(617) 820-0415</a>
           </div>
         </div>
         <!-- Optional: add profile photo to assets/ and uncomment below
@@ -51,97 +53,86 @@
 
     <section id="projects" class="section">
       <h2>Projects</h2>
-      <p class="section-intro">Things I've built or contributed to.</p>
-      <div class="card-grid">
-        <article class="project-card">
-          <h3>Project One</h3>
-          <p>A brief description of what the project does and why it matters. One or two sentences.</p>
-          <ul class="tags" aria-label="Technologies">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-          </ul>
-          <div class="card-links">
-            <a href="https://github.com/YOUR_USERNAME/project-one" target="_blank" rel="noopener noreferrer">Source</a>
-            <a href="#" target="_blank" rel="noopener noreferrer">Live demo</a>
-          </div>
-        </article>
+      <p class="section-intro">Things I've built or contributed to. Filter by tag or open a project for the full write-up.</p>
 
-        <article class="project-card">
-          <h3>Project Two</h3>
-          <p>Another project summary. Highlight the problem you solved or what you learned.</p>
-          <ul class="tags" aria-label="Technologies">
-            <li>Python</li>
-            <li>Flask</li>
-          </ul>
-          <div class="card-links">
-            <a href="https://github.com/YOUR_USERNAME/project-two" target="_blank" rel="noopener noreferrer">Source</a>
-          </div>
-        </article>
+      <div id="project-filters" class="project-filters" role="group" aria-label="Filter projects by tag" hidden></div>
 
-        <article class="project-card">
-          <h3>Project Three</h3>
-          <p>Third project description. Add a live link only if you have a deployed demo.</p>
-          <ul class="tags" aria-label="Technologies">
-            <li>React</li>
-            <li>TypeScript</li>
-          </ul>
-          <div class="card-links">
-            <a href="https://github.com/YOUR_USERNAME/project-three" target="_blank" rel="noopener noreferrer">Source</a>
-          </div>
-        </article>
-      </div>
+      <p id="projects-error" class="projects-status" hidden>Could not load projects. Run a local server (<code>python3 -m http.server</code>) or check <code>data/projects.json</code>.</p>
+      <p id="projects-empty" class="projects-status" hidden>No projects match this filter.</p>
+
+      <div id="projects-grid" class="card-grid" aria-live="polite"></div>
     </section>
 
-    <section id="learning" class="section">
-      <h2>Learning</h2>
-      <p class="section-intro">What I'm studying and exploring right now.</p>
-
-      <div class="learning-groups">
-        <div class="learning-group">
-          <h3>Currently</h3>
-          <ul class="learning-list">
-            <li class="learning-item">
-              <span class="learning-topic">Topic or course name</span>
-              <span class="learning-note">Short note on what you're focusing on.</span>
-              <a href="#" target="_blank" rel="noopener noreferrer">Course / docs</a>
-            </li>
-            <li class="learning-item">
-              <span class="learning-topic">Another skill</span>
-              <span class="learning-note">Building small projects to practice.</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="learning-group">
-          <h3>Recently finished</h3>
-          <ul class="learning-list">
-            <li class="learning-item">
-              <span class="learning-topic">Completed topic</span>
-              <span class="learning-note">What you took away from it.</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="learning-group">
-          <h3>Want to explore</h3>
-          <ul class="learning-list">
-            <li class="learning-item">
-              <span class="learning-topic">Future interest</span>
-              <span class="learning-note">Why it caught your attention.</span>
-            </li>
-          </ul>
-        </div>
+    <dialog id="project-modal" class="project-modal" hidden aria-labelledby="project-modal-title">
+      <div class="modal-backdrop" data-modal-close tabindex="-1" aria-hidden="true"></div>
+      <div class="modal-panel" role="document">
+        <header class="modal-header">
+          <h2 id="project-modal-title"></h2>
+          <button type="button" class="modal-close" data-modal-close aria-label="Close project details">&times;</button>
+        </header>
+        <div id="project-modal-body" class="modal-body"></div>
       </div>
+    </dialog>
+
+    <section id="experience" class="section">
+      <h2>Experience</h2>
+      <p class="section-intro">A few places I've worked, and the stories behind them. Each card is a hook; open one when you want the longer version.</p>
+      <p id="experience-error" class="projects-status" hidden>Could not load experience. Run a local server or check <code>data/experience.json</code>.</p>
+      <div id="experience-list" class="experience-list" aria-live="polite"></div>
     </section>
+
+    <dialog id="experience-modal" class="project-modal" hidden aria-labelledby="experience-modal-title">
+      <div class="modal-backdrop" data-modal-close tabindex="-1" aria-hidden="true"></div>
+      <div class="modal-panel" role="document">
+        <header class="modal-header">
+          <h2 id="experience-modal-title"></h2>
+          <button type="button" class="modal-close" data-modal-close aria-label="Close story">&times;</button>
+        </header>
+        <div id="experience-modal-body" class="modal-body"></div>
+      </div>
+    </dialog>
+
+    <section id="skills" class="section">
+      <h2>Skills</h2>
+      <p id="skills-error" class="projects-status" hidden>Could not load skills. Check <code>data/skills.json</code>.</p>
+      <div id="skills-grid" class="skills-grid"></div>
+    </section>
+
+    <section id="education" class="section">
+      <h2>Education</h2>
+      <details id="education-details" class="section-collapse">
+        <summary class="section-collapse-summary">
+          <span class="section-collapse-label">Show degrees</span>
+          <span class="section-collapse-chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="section-collapse-panel">
+          <p id="education-error" class="projects-status" hidden>Could not load education. Check <code>data/education.json</code>.</p>
+          <div id="education-list" class="experience-list" aria-live="polite"></div>
+        </div>
+      </details>
+    </section>
+
   </main>
 
+  <div id="gallery-lightbox" class="gallery-lightbox" hidden role="dialog" aria-modal="true" aria-labelledby="gallery-lightbox-caption">
+    <button type="button" class="gallery-lightbox-close" data-lightbox-close aria-label="Close full screen image">&times;</button>
+    <button type="button" class="gallery-lightbox-backdrop" data-lightbox-close tabindex="-1" aria-hidden="true"></button>
+    <figure class="gallery-lightbox-figure">
+      <img id="gallery-lightbox-img" src="" alt="">
+      <figcaption id="gallery-lightbox-caption"></figcaption>
+    </figure>
+  </div>
+
   <footer class="site-footer">
-    <p>&copy; <span id="year"></span> Your Name. Built with HTML &amp; CSS on <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a>.</p>
+    <p>&copy; <span id="year"></span> Krishna Raketla. Built with HTML &amp; CSS on <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a>.</p>
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  <script type="module" src="js/education.js"></script>
+  <script type="module" src="js/experience.js"></script>
+  <script type="module" src="js/skills.js"></script>
+  <script type="module" src="js/projects.js"></script>
 </body>
 </html>
