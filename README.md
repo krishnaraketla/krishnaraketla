@@ -1,3 +1,7 @@
-# Personal portfolio (GitHub Pages)
+# Hi, I'm Krishna Raketla
 
-A single-page static portfolio: introduction, projects, and learning. No build step : edit HTML and CSS, push to GitHub.
+AI Software Engineer in Boston — pipelines, observability, then ML/agents on top.
+
+- Portfolio: https://krishnaraketla.github.io/krishnaraketla/
+- LinkedIn: https://www.linkedin.com/in/krishna-raketla/
+- Email: raketla.k@northeastern.edu
