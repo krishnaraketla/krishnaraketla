@@ -163,24 +163,10 @@ main {
 
 /* About */
 
-.about-inner {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xl);
-  align-items: center;
-  justify-content: space-between;
-}
-
-.about-text {
-  flex: 1 1 16rem;
-  min-width: 0;
-}
-
 .about-media {
-  flex: 0 0 auto;
   display: flex;
-  align-items: center;
   justify-content: center;
+  margin: 0 0 var(--space-lg);
 }
 
 .eyebrow {
@@ -227,22 +213,29 @@ main {
 
 @media (min-width: 36rem) {
   .about-inner {
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-xl);
+    align-items: center;
   }
-}
 
-@media (max-width: 35.99rem) {
-  .about-inner {
-    flex-direction: column;
-    align-items: stretch;
+  .about-text {
+    display: contents;
   }
 
   .about-media {
-    order: -1;
+    grid-column: 2;
+    grid-row: 1 / -1;
+    align-self: center;
+    margin: 0;
   }
 
-  .profile-photo {
-    margin-inline: auto;
+  .eyebrow,
+  .about h1,
+  .contact-line,
+  .lead,
+  .link-row {
+    grid-column: 1;
   }
 }
 
