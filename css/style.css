@@ -167,12 +167,20 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-xl);
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .about-text {
-  flex: 1;
-  min-width: min(100%, 18rem);
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+
+.about-media {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .eyebrow {
@@ -215,6 +223,27 @@ main {
   object-fit: cover;
   border-radius: 50%;
   border: 2px solid var(--border);
+}
+
+@media (min-width: 36rem) {
+  .about-inner {
+    flex-wrap: nowrap;
+  }
+}
+
+@media (max-width: 35.99rem) {
+  .about-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .about-media {
+    order: -1;
+  }
+
+  .profile-photo {
+    margin-inline: auto;
+  }
 }
 
 .link-row {
