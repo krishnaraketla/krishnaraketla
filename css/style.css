@@ -213,29 +213,15 @@ main {
 
 @media (min-width: 36rem) {
   .about-inner {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: var(--space-xl);
-    align-items: center;
-  }
-
-  .about-text {
-    display: contents;
+    position: relative;
+    padding-right: calc(10rem + var(--space-xl));
   }
 
   .about-media {
-    grid-column: 2;
-    grid-row: 1 / -1;
-    align-self: center;
+    position: absolute;
+    top: 0;
+    right: 0;
     margin: 0;
-  }
-
-  .eyebrow,
-  .about h1,
-  .contact-line,
-  .lead,
-  .link-row {
-    grid-column: 1;
   }
 }
 
